@@ -3,7 +3,6 @@ package sg.edu.nus.iss.vttpAssessment.controller;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonStructure;
 import jakarta.json.JsonValue;
 import sg.edu.nus.iss.vttpAssessment.model.Quotation;
 import sg.edu.nus.iss.vttpAssessment.service.QuotationService;
