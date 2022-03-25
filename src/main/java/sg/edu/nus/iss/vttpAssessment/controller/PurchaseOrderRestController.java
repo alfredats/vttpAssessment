@@ -53,7 +53,7 @@ public class PurchaseOrderRestController {
 
         try {
             logger.info(">>> Quotation successful: " + quot.getQuotations());
-            double total = 0;
+            double total = 0; // double in case someone orders 9.99E38 durians
 
             for (JsonValue entry : lineitems) {
                 JsonObject x = entry.asJsonObject(); 
@@ -67,9 +67,9 @@ public class PurchaseOrderRestController {
 
             return ResponseEntity.ok().body(respBuilder.build().toString());
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException e) { // if qSvc returned an empty optional
             logger.error("Quotation returned from Service was empty: " + e.getMessage());
-        } catch (Exception e) {
+        } catch (Exception e) { // fallback 
             logger.error(e.getMessage());
         }
         

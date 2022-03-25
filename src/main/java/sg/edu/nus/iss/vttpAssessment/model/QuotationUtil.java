@@ -11,6 +11,7 @@ import jakarta.json.JsonObject;
 
 
 public class QuotationUtil {
+    // can't modify Quotation.java so i created a util package
     public static final Quotation create(String resp) throws JsonException {
         Quotation quot = new Quotation();
         Map<String, Float> itemQuots = new HashMap<>();

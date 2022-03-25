@@ -28,7 +28,7 @@ public class QuotationService {
 
     private static final String QUOTATION_SERVER = "https://quotation.chuklee.com";
 
-    public Optional<Quotation> getQuotations(List<String> items) {
+    public Optional<Quotation> getQuotations(List<String> items) { 
         String endpoint = UriComponentsBuilder.fromUriString(QUOTATION_SERVER + "/quotation").toUriString();
         JsonArrayBuilder itemsJsonBuilder = Json.createArrayBuilder();
         items.forEach(v -> itemsJsonBuilder.add(v));
@@ -44,12 +44,12 @@ public class QuotationService {
             logger.info(">>> QUOTATION SERVER RETURNED: " + resp.getBody());
             if (resp.getStatusCodeValue() == 200) {
                 return Optional.ofNullable(QuotationUtil.create(resp.getBody()));
-            } else {
+            } else { // this branch shouldn't trigger, but is here as a fallback
                 logger.info(">>> getQuotations: DID NOT RECEIVE STATUS 200, INSTEAD GOT " + resp.getStatusCodeValue());
             }
-        } catch (RestClientException e) {
+        } catch (RestClientException e) { // 400 throws RestClientException
             logger.error(">>> RestClientException @ getQuotations: " + e.getMessage());
-        } catch (JsonException e) {
+        } catch (JsonException e) { // Response parsing error in QuotationUtil.create
             logger.error(">>> JsonException @ getQuotations: " + e.getMessage());
         }
         
